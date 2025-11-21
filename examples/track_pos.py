@@ -7,7 +7,7 @@ from crazyflow.sim.visualize import draw_line, draw_points
 
 
 def main():
-    fps = 60
+    fps = 30
     rgbas = np.random.default_rng(0).uniform(0, 1, (1, 4))
     rgbas[..., 3] = 1.0
 
@@ -37,7 +37,7 @@ def main():
     control = np.zeros((sim.n_worlds, sim.n_drones, 13))
 
     # duration per waypoint
-    steps_per_waypoint = len(waypoints) * sim.control_freq
+    steps_per_waypoint = 5 * sim.control_freq
 
     pos = deque()
 
