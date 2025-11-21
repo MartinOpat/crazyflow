@@ -146,7 +146,7 @@ def profile_reset(sim_config: config_dict.ConfigDict, n_steps: int, device: str)
     analyze_timings(times_masked, n_steps, sim.n_worlds, sim.freq)
 
 
-def main(device: str = "cpu", n_worlds_exp: int = 6):
+def main(device: str = "gpu", n_worlds_exp: int = 6):
     """Main entry point for profiling."""
     sim_config = config_dict.ConfigDict()
     sim_config.n_worlds = 1
