@@ -50,7 +50,10 @@
     },
     "containerEnv": {
         "DISPLAY": "${localEnv:DISPLAY}",
-        "XAUTHORITY": "${localEnv:XAUTHORITY}"
+        "XAUTHORITY": "${localEnv:XAUTHORITY}",
+        "NVIDIA_VISIBLE_DEVICES": "all",
+        "NVIDIA_DRIVER_CAPABILITIES": "graphics,utility,compute",
+        "MUJOCO_GL": "egl"
     },
     "runArgs": [
         "--interactive",
@@ -59,6 +62,10 @@
         "--gpus=all", //use only with GPU
         // "--runtime=nvidia" //use only with GPU
     ],
+    "mounts": [
+      "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
+    ],
+
     "postCreateCommand": "python -m pip install -e '.[test,gpu]'",
     "remoteUser": "vscode"
 }
