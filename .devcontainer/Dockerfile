@@ -68,8 +68,7 @@ WORKDIR /tmp/install
 COPY --chown=$USERNAME:$USERNAME . .
 
 # Install dependencies as non-root user
-# add ".[test,gpu]"" if required
-RUN pip install --no-cache-dir -e "." 
+# RUN pip install --no-cache-dir -e ".[test,gpu]"
 
 # Set final working directory
 WORKDIR /workspace
