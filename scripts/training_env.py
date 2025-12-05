@@ -85,10 +85,12 @@ class CrazyflowTrajectoryEnv(gym.Env):
         control_input = np.zeros((self.sim.n_worlds, self.sim.n_drones, 4))
         control_input[0, 0] = thrust_cmd
 
-        if hasattr(self.sim, "thrust_control"):
-            self.sim.thrust_control(control_input)
-        else:
-            self.sim.data = self.sim.data.replace(inputs=jnp.array(control_input))
+        # thrust_control works. The API should not change
+        self.sim.thrust_control(control_input)
+        # if hasattr(self.sim, "thrust_control"):
+        #     self.sim.thrust_control(control_input)
+        # else:
+        #     self.sim.data = self.sim.data.replace(inputs=jnp.array(control_input))
 
         self.sim.step(self.steps_per_env_step)
         self.current_step += 1
